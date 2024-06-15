@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 import ReactPaginate from "react-paginate";
 import MoviesRepository, { type Movie } from "../repositories/movies.repository";
 import MovieFound from "../components/movie-found";
-import { iterateFromIndex } from "../utils/functions";
+import { paginateIterateFromIndex } from "../utils/paginate-iterate-from-index";
 import { TOTAL_MOVIES_PER_PAGE } from "../utils/envs";
 import Head from "../components/head";
 
@@ -79,7 +79,7 @@ export default function RandomMovie() {
 
     useEffect(() => {
         if (movies?.length) {
-            setPaginationMovies(iterateFromIndex(movies, 0));
+            setPaginationMovies(paginateIterateFromIndex(movies, 0));
             setPageCount(Math.ceil(movies?.length / TOTAL_MOVIES_PER_PAGE));
             setPageOffset(0);
         }
@@ -95,7 +95,7 @@ export default function RandomMovie() {
     }, [movie]);
 
     const handlePageChange = (event: any) => {
-        setPaginationMovies(iterateFromIndex(movies!, event.selected));
+        setPaginationMovies(paginateIterateFromIndex(movies!, event.selected));
         setPageCount(Math.ceil((movies?.length as number) / TOTAL_MOVIES_PER_PAGE));
         setPageOffset(event.selected);
     };
@@ -104,7 +104,7 @@ export default function RandomMovie() {
         <>
             <Head title="movies.alexgalhardo.com" description="The best movies recomendation." />
             <Navbar />
-            <div className="container" style={{ marginTop: "100px" }}>
+            <div className="container col-lg-8" style={{ marginTop: "100px" }}>
                 <div className="row mt-5">
                     {/* {error && <ErrorAlertMessage message={error} />} */}
 
@@ -126,33 +126,35 @@ export default function RandomMovie() {
                                 Found:{" "}
                                 <strong className="text-danger">
                                     {" "}
-                                    {totalMoviesFound} {totalMoviesFound! > 1 ? "Books" : "Movie"}
+                                    {totalMoviesFound} {totalMoviesFound! > 1 ? "Movies" : "Movie"}
                                 </strong>
                             </span>
                         </p>
                     ) : null}
 
                     {totalMoviesFound && totalMoviesFound > TOTAL_MOVIES_PER_PAGE ? (
-                        <ReactPaginate
-                            previousLabel="Previous"
-                            nextLabel="Next"
-                            pageClassName="page-item"
-                            pageLinkClassName="page-link"
-                            previousClassName="page-item"
-                            previousLinkClassName="page-link"
-                            nextClassName="page-item"
-                            nextLinkClassName="page-link"
-                            breakLabel="..."
-                            breakClassName="page-item"
-                            breakLinkClassName="page-link"
-                            pageCount={pageCount}
-                            pageRangeDisplayed={TOTAL_MOVIES_PER_PAGE}
-                            onPageChange={handlePageChange}
-                            containerClassName="pagination"
-                            activeClassName="active"
-                            className="pagination justify-content-center mb-5"
-                            forcePage={pageOffset}
-                        />
+                        <div style={{ overflowX: "hidden" }}>
+                            <ReactPaginate
+                                previousLabel="Previous"
+                                nextLabel="Next"
+                                pageClassName="page-item"
+                                pageLinkClassName="page-link"
+                                previousClassName="page-item"
+                                previousLinkClassName="page-link"
+                                nextClassName="page-item"
+                                nextLinkClassName="page-link"
+                                breakLabel="..."
+                                breakClassName="page-item"
+                                breakLinkClassName="page-link"
+                                pageCount={pageCount}
+                                pageRangeDisplayed={TOTAL_MOVIES_PER_PAGE}
+                                onPageChange={handlePageChange}
+                                containerClassName="pagination"
+                                activeClassName="active"
+                                className="pagination justify-content-center mb-5"
+                                forcePage={pageOffset}
+                            />
+                        </div>
                     ) : null}
 
                     {!foundMoreThanOne ? (
@@ -165,26 +167,28 @@ export default function RandomMovie() {
                         paginationMovies?.map((movie: Movie) => <MovieFound movie={movie} />)}
 
                     {totalMoviesFound && totalMoviesFound > TOTAL_MOVIES_PER_PAGE ? (
-                        <ReactPaginate
-                            previousLabel="Previous"
-                            nextLabel="Next"
-                            pageClassName="page-item"
-                            pageLinkClassName="page-link"
-                            previousClassName="page-item"
-                            previousLinkClassName="page-link"
-                            nextClassName="page-item"
-                            nextLinkClassName="page-link"
-                            breakLabel="..."
-                            breakClassName="page-item"
-                            breakLinkClassName="page-link"
-                            pageCount={pageCount}
-                            pageRangeDisplayed={TOTAL_MOVIES_PER_PAGE}
-                            onPageChange={handlePageChange}
-                            containerClassName="pagination"
-                            activeClassName="active"
-                            className="pagination justify-content-center mb-5"
-                            forcePage={pageOffset}
-                        />
+                        <div style={{ overflowX: "hidden" }}>
+                            <ReactPaginate
+                                previousLabel="Previous"
+                                nextLabel="Next"
+                                pageClassName="page-item"
+                                pageLinkClassName="page-link"
+                                previousClassName="page-item"
+                                previousLinkClassName="page-link"
+                                nextClassName="page-item"
+                                nextLinkClassName="page-link"
+                                breakLabel="..."
+                                breakClassName="page-item"
+                                breakLinkClassName="page-link"
+                                pageCount={pageCount}
+                                pageRangeDisplayed={TOTAL_MOVIES_PER_PAGE}
+                                onPageChange={handlePageChange}
+                                containerClassName="pagination"
+                                activeClassName="active"
+                                className="pagination justify-content-center mb-5"
+                                forcePage={pageOffset}
+                            />
+                        </div>
                     ) : null}
                 </div>
             </div>

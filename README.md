@@ -4,7 +4,7 @@
 
 ## Introduction
 
-- A simple project to recommend the best movies to watch based on your genres preferences.
+- Simple movies recomendations based on average score and popularity from [The Movie DataBase](https://www.themoviedb.org/)
 
 ## Development Setup Local
 
@@ -12,7 +12,7 @@
 
 1. Clone repository
 ```bash
-git clone https://github.com/AlexGalhardo/movies.alexgalhardo.com
+git clone git@github.com:AlexGalhardo/movies.alexgalhardo.com.git
 ```
 
 2. Enter repository
@@ -31,6 +31,10 @@ a. Create build
 ```
 bun run build
 ```
+
+## API
+- Getting Started: <https://developer.themoviedb.org/docs/getting-started>
+- API Reference: <https://developer.themoviedb.org/reference/intro/getting-started>
 
 ## LICENSE
 

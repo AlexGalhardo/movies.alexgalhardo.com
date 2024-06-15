@@ -1,4 +1,6 @@
+import slugify from "slugify";
 import type { Movie } from "../repositories/movies.repository";
+import { formatDate } from "../utils/date";
 
 export default function MovieFound({
     movie,
@@ -20,21 +22,20 @@ export default function MovieFound({
                 />
                 {buttonRecommend && (
                     <button
-                        className="button mt-3 w-80 btn mb-5 btn-success fw-bold fs-5"
+                        className="button mt-3 w-100 btn mb-5 btn-success fw-bold fs-5"
                         onClick={recommendRandomMovie}
                     >
-                        <i className="bi bi-play-fill"></i>
-                        Random Movie
+                        <i className="bi bi-play-fill"></i>Random Movie
                     </button>
                 )}
             </div>
 
-            <div className="col-lg-6">
+            <div className="col-lg-8">
                 <div className="card-body">
                     <div className="d-flex justify-content-between">
-                        <a className="fs-2 text-decoration-none" href={`/movie/${movie?.slug}`}>
+                        <h2>
                             <span className="fw-bold">{movie?.title} </span>
-                        </a>
+                        </h2>
 
                         <p className="fs-2 fw-bold text-warning text-decoration-none">
                             ⭐ <span id="movie_tmdb_rating">{movie?.vote_average.toFixed(1)}</span>
@@ -43,8 +44,25 @@ export default function MovieFound({
 
                     <p>{movie?.overview}</p>
 
-					<ul>
-                        <li>Release Date: {movie?.release_date}</li>
+                    <ul>
+                        <li>
+                            <span className="fw-bold">Release Date: </span> {formatDate(movie?.release_date as string)}
+                        </li>
+                        <li>
+                            <span className="fw-bold">Genres:</span>
+                            <ul>
+                                {movie?.genres.map((genre) => (
+                                    <li key={genre.id}>
+                                        <a
+                                            className="text-decoration-none"
+                                            href={`/genre/${slugify(genre.name, { lower: true, strict: true })}`}
+                                        >
+                                            {genre.name}
+                                        </a>
+                                    </li>
+                                ))}
+                            </ul>
+                        </li>
                     </ul>
                 </div>
             </div>

@@ -8,6 +8,6 @@ export const APP_URL =
         ? import.meta.env.VITE_APP_URL_DEV
         : import.meta.env.VITE_APP_URL_PROD;
 
-export const APP_NAME = import.meta.env.VITE_APP_NAME ?? "movies.alexgalhardo.com";
+export const APP_NAME = "movies.alexgalhardo.com";
 
-export const TOTAL_MOVIES_PER_PAGE = Number(import.meta.env.VITE_TOTAL_GAMES_PER_PAGE) ?? 5;
+export const TOTAL_MOVIES_PER_PAGE = 10;
