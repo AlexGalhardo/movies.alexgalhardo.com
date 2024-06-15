@@ -1,0 +1,36 @@
+{
+	"name": "movies.alexgalhardo.com",
+	"type": "module",
+	"scripts": {
+		"dev": "vite",
+		"build": "vite build",
+		"preview": "vite preview",
+		"format": "prettier --write \"src/**/*.tsx\" \"src/**/*.ts\"",
+		"husky": "husky",
+		"create-best-movies-json": "bun run src/scripts/create-best-movies-json.ts",
+		"create-best-movies-info-json": "bun run src/scripts/create-best-movies-info-json.ts",
+		"recommend-movie": "bun run src/scripts/recommend-movie.ts"
+	},
+	"dependencies": {
+		"@types/string-similarity": "^4.0.2",
+		"bootstrap": "^5.3.3",
+		"bootstrap-icons": "^1.11.3",
+		"react": "^18.3.1",
+		"react-bootstrap": "^2.10.2",
+		"react-dom": "^18.3.1",
+		"react-paginate": "^8.2.0",
+		"react-router-dom": "^6.23.1",
+		"react-use-websocket": "^4.8.1",
+		"slugify": "^1.6.6",
+		"string-similarity": "^4.0.4"
+	},
+	"devDependencies": {
+		"@types/react": "^18.3.3",
+		"@types/react-dom": "^18.3.0",
+		"@vitejs/plugin-react": "^4.3.0",
+		"@types/bun": "latest",
+		"vite": "^5.2.13",
+		"husky": "^9.0.11",
+		"prettier": "^3.3.1"
+	}
+}
